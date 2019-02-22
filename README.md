@@ -8,6 +8,7 @@ Hey,this is my first repo ,it is a web application for blog at the beginner leve
 - Passsport Authentication for Administration
 - Encrypt Password Hash</i>
 - Image Upload
+- Tiny MCE Text editor
 
 ## Server Side Dependencies
 ````
