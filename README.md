@@ -1,5 +1,8 @@
 # Blog_app
 Hey,this is my first repo ,it is a web application for blog at the beginner level made on nodejs,express and mongodb.
+
+![Blog_demo](https://github.com/GauravNegi000/blog_app/blob/master/blog-app-eg.PNG)
+
 ## Features
 - (CRUD) Create/Read/Update/Delete Article
 - Passsport Authentication for Administration
