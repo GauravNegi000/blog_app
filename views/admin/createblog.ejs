@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator Panel</title>
+	<!-- Bootstrap Styles-->
+    <link href="admin/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="admin/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="admin/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <link rel="icon" type="image/ico" href="/admin/img/admin.png">
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin"><strong>Admin Panel</strong></a>
+            </div>           
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>                   
+                    <li>
+                        <a href="/admin/allblogs"><i class="fa fa-qrcode"></i>All Blogs</a>
+                    </li>
+                    
+                    <li>
+                        <a class="active-menu" href="/blogs/new"><i class="fa fa-fw fa-file"></i>Create Blog</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i>User<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li>
+                                <a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+		  <div class="header"> 
+                        <h1 class="page-header">
+                            Empty Blog <small>Create new blog.</small>
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="/admin">Home</a></li>
+					  <li><a href="#">Empty</a></li>
+					  <li class="active">Create New</li>
+					</ol> 
+									
+		</div>
+            <div id="page-inner"> 
+                    <form action="/blogs" method="POST" enctype="multipart/form-data">
+                        <div class="container mt-2">
+                                <input class="form-control" type="text" placeholder="Title" name="name" required="" autocomplete="off">
+                                <textarea id="mytextArea" name="description" required="">Enter Text Here</textarea>
+                                <input class="form-control" type="file" placeholder="Image Path" name="image" required="">
+                                <button class="btn btn-success btn-block" type="submit">Submit</button>
+                            </div>
+                </form>
+            		
+				</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+     
+    <!-- JS Scripts-->
+    <!-- For Tinymce editor -->
+    <script src="tinymce/tinymce.min.js"></script>
+    <script src="tinymce/init-tinymce.js"></script>
+    <!-- jQuery Js -->
+    <script src="admin/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="admin/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="admin/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="admin/js/custom-scripts.js"></script>
+    
+   
+</body>
+</html>

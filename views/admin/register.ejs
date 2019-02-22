@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Sign Up </title>
+	<link rel="stylesheet" href="/stylesheets/login.css">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="icon" type="image/ico" href="/images/key.png">
+  
+</head>
+<div class="login-page">
+  <div class="form">
+      <% if(error && error.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+                <%= error %>
+        </div>
+    <% } %>
+    <form class="login-form" action="/register" method="POST">
+      <input type="text" name="username" placeholder="username"/>
+      <input type="password" name ="password" placeholder="password"/>
+      <button type="submit">Sign Up</button>
+      <p class="message">Already registered? <a href="/login">Sign In</a></p>
+    </form>
+  </div>
+</div>
+</html>

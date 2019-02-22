@@ -1,0 +1,132 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <header>
+        <a href="/blogs"><img src="/images/logo.png"></a>
+    </header>
+    		<!-- Code for Featured Posts -->
+		<% if(blogs.length > 3) { %>
+			<% var featured = new Array() %>
+			<% for(var i = 0;i < blogs.length; i++) { featured.push(blogs[i]) } %>
+			<%	var fplength = 3 %>	 
+			<% featured.sort(function(a,b){ %>
+			<% return b.comments.length-a.comments.length; %>
+		<% })} else { %>
+			 <% var featured = blogs  %>
+			 <%	var fplength = blogs.length } %>
+    <section>
+        <div class="row">
+            <div class="col-md-8">
+				<% if (blog.status === 1) { %>					
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <a href="/blogs/<%= blog._id %>"><img src="<%= blog.image %>" alt=""></a>
+                    </div>
+                    <div class="blog-post-body">
+                        <h2><a href="/blogs/<%= blog._id %>"><%= blog.name %></a></h2>                        
+                        <div class="post-meta"><span>by <a href="/about">author_name</a></span>/<span><i class="fa fa-clock-o"></i><%= blog.created.toDateString() %></span>/<span><i class="fa fa-comment-o"></i><%= blog.comments.length %></span></div>
+                        <div>
+
+                            <p><%- blog.description %></p>
+                        </div>
+                    </div>
+                </article>
+                <% } %>
+                <!-- Comment Section -->
+                <div class="card card-inner">
+                    <div class="row">
+                        <div class="col-lg-8">
+                    <h2>Comments -:</h2>
+						<% if (blog.status === 1) { %>					
+                    <% blog.comments.forEach(function(comment){ %>
+            	    <div class="card-body">
+            	        <div class="row">
+                    	    <div class="col-md-2 col-sm-2 col-xs-3">
+                                <img src="/images/face.jpg" class="img img-rounded img-fluid"/>
+                                <% var date = comment.created %>
+                    	        <p class="text-secondary text-center"><%=moment(date).fromNow() %></p>
+                    	    </div>
+                    	    <div class="col-md-10">
+                    	        <p><strong><%= comment.name %></strong></a></p>
+                    	        <p><%= comment.description %></p>
+                    	        <p>
+                                    <% if(currentUser) { %>                        
+                                    <form action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    	            <button type="submit" class=" btn text-white btn-danger"> <i class="fa fa-trash-o"></i> Delete</button>
+                                    </form>
+                                    <% } %>
+                    	       </p>
+                    	    </div>
+            	        </div>
+                    </div>
+                    <% })} %>
+                        </div>
+                    </div>
+                </div>
+                <!-- Comment Section ends here -->
+                <!-- CommentForm -->
+                <div id="addcomment" class="collapse">
+                    <h3>Add Comments -:</h3>
+                    <form action="/blogs/<%= blog._id %>/comments" method="POST">
+                        <input class="form-control" type="text" placeholder="Name" name="comment[name]" required="" autocomplete="off">
+                        <textarea class="form-control" name="comment[description]" placeholder="Text Here..." required=""></textarea>
+                        <input class="btn btn-block" type="submit" value="Post">
+                    </form>
+                </div>
+                <button id="addcommentbtn" class="btn btn-info" type="button" data-target="#addcomment" data-toggle="collapse">Add new Comment</button>
+            </div>
+            <div class="col-md-4 sidebar-gutter">
+                <aside>
+                <!-- sidebar-widget -->
+                <div class="sidebar-widget">
+                    <h3 class="sidebar-title">About Me</h3>
+                    <div class="widget-container widget-about">
+                        <a href="/blogs/<%= blog._id %>"><img src="/images/author.jpg" alt=""></a>
+                        <h4>author_name</h4>
+                        <div class="author-title">Designer</div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Featured Posts</h3>
+                        <div class="widget-container">
+                            <% for (var i = 0; i < fplength; i++) { %>							
+                                <% if (blogs[i].status === 1) { %>					
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/blogs/<%= featured[i]._id %>"><img src="<%= featured[i].image %>" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/blogs/<%= featured[i]._id %>"><%= featured[i].name %></a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i><%= featured[i].created.toDateString() %></span> <span><i class="fa fa-comment-o"></i> <%= featured[i].comments.length %></span>
+                                    </div>
+                                </div>
+                            </article>
+                            <% }} %>
+                        </div>
+                    </div>		
+                    <!-- sidebar-widget -->
+                <div class="sidebar-widget">
+                    <h3 class="sidebar-title">Socials</h3>
+                    <div class="widget-container">
+                        <div class="widget-socials">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-widget -->
+                <div class="sidebar-widget">
+                    <h3 class="sidebar-title"></h3>
+                </div>
+                </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    </div><!-- /.container -->
+
+    <% include ../partials/footer %>    

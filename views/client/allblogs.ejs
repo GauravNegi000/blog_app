@@ -1,0 +1,120 @@
+<% include ../partials/header %>
+
+		<div class="container">
+		<header>
+			<a href="/blogs"><img src="images/logo.png"></a>
+		</header>
+				<!-- Code for Featured Posts -->
+				<% if(blogs.length > 3) { %>
+					<% var featured = new Array() %>
+					<% for(var i = 0;i < blogs.length; i++) { featured.push(blogs[i]) } %>
+					<%	var fplength = 3 %>	 
+					<% featured.sort(function(a,b){ %>
+					<% return b.comments.length-a.comments.length; %>
+				<% })} else { %>
+					 <% var featured = blogs  %>
+					 <%	var fplength = blogs.length } %>
+		<section>
+			
+		<!-- Code to display blogs of status === 1 -->
+		<% var display = new Array() %>
+		<% for(var i = 0;i < blogs.length; i++) { %>
+		<% if(blogs[i].status === 1) { display.push(blogs[i]) }} %>
+			<div class="row">
+				<div class="col-md-8">
+				<%	if (display.length >= 3) { var c = display.length-3; } else { c = 0; } %>
+					<% for (var i = display.length-1; i >= c; i--) { %>	
+						<% if (display[i].status === 1) { %>					
+					<article class="blog-post">
+						<div class="blog-post-image">
+							<a href="/blogs/<%= display[i]._id %>"><img src="<%= display[i].image %>" alt=""></a>
+						</div>
+						<div class="blog-post-body">
+							<h2><a href="/blogs/<%= display[i]._id %>"><%= display[i].name %></a></h2>
+							<div class="post-meta"><span>by <a href="#">author_name</a></span>/<span><i class="fa fa-clock-o"></i><%= display[i].created.toDateString() %></span>/<span><i class="fa fa-comment-o"></i><%= display[i].comments.length %></span></div>
+							<!-- <p><%- blogs[i].description.substring(0,200) %>......</p> -->
+							<div class="read-more"><a href="/blogs/<%= display[i]._id %>">Continue Reading</a></div>
+						</div>
+					</article>
+                    <% }} %>
+                    <!-- Show More Button -->
+                    <% if (c != 0) {  %>
+                        <div id="showmore" class="collapse">                        
+						<% for (var i = c-1; i >= 0; i--) { %>
+						<% if (display[i].status === 1) { %>												
+                                <article class="blog-post">
+                                        <div class="blog-post-image">
+                                            <a href="/blogs/<%= display[i]._id %>"><img src="<%= display[i].image %>" alt=""></a>
+                                        </div>
+                                        <div class="blog-post-body">
+                                            <h2><a href="/blogs/<%= display[i]._id %>"><%= display[i].name %></a></h2>
+                                            <div class="post-meta"><span>by <a href="#">author_name</a></span>/<span><i class="fa fa-clock-o"></i><%= display[i].created.toDateString() %></span>/<span><i class="fa fa-comment-o"></i><%= display[i].comments.length %></span></div>
+                                            <!-- <p><%- blogs[i].description.substring(0,200) %>......</p> -->
+                                            <div class="read-more"><a href="/blogs/<%= display[i]._id %>">Continue Reading</a></div>
+                                        </div>
+                                    </article>
+                    <% }}  %>    
+                </div>
+                <button id="showmorebtn" type="button" class="btn btn-info" data-target="#showmore" data-toggle="collapse">Show More</button>
+                <% } %>
+				</div>
+
+				<div class="col-md-4 sidebar-gutter">
+					<aside>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">About Me</h3>
+						<div class="widget-container widget-about">
+							<a href="/about"><img src="images/author.jpg" alt=""></a>
+							<h4>author_name</h4>
+							<div class="author-title">Designer</div>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+						</div>
+					</div>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">Featured Posts</h3>
+						<div class="widget-container">
+							<% for (var i = 0; i < fplength; i++) { %>							
+								<% if (blogs[i].status === 1) { %>					
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="/blogs/<%= featured[i]._id %>"><img src="<%= featured[i].image %>" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="/blogs/<%= featured[i]._id %>"><%= featured[i].name %></a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i><%= featured[i].created.toDateString() %></span> <span><i class="fa fa-comment-o"></i> <%= featured[i].comments.length %></span>
+									</div>
+								</div>
+							</article>
+							<% }} %>
+						</div>
+					</div>		
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">Socials</h3>
+						<div class="widget-container">
+							<div class="widget-socials">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title"></h3>
+					</div>
+					</div>
+					</aside>
+				</div>
+				<ul class="pager">
+					<li><a href="/">Previous</a></li>
+					<li><a href="#">All Posts</a></li>
+				  </ul>
+			</div>
+		</section>
+		</div><!-- /.container -->
+
+<% include ../partials/footer %>
